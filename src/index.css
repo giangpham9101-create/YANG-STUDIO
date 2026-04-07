@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'FSEX300';
+  src: url('./assets/font/FSEX300.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HubotSansSemiExpanded';
+  src: url('./assets/font/fontvn.com-hubbot/HubotSans_SemiExpanded-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HubotSans';
+  src: url('./assets/font/fontvn.com-hubbot/HubotSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "HubotSans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "HubotSansSemiExpanded", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "FSEX300", sans-serif;
+  --font-serif-italic: "Playfair Display", serif;
+
+  --color-acid: #D1FF00;
+  --color-burnt-orange: #D94E1F;
+  --color-charcoal: #121212;
+  --color-navy: #0A0F1E;
+  --color-warning: #FF3B30;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F5F5F5] text-charcoal selection:bg-acid selection:text-black overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .brutalist-border {
+    @apply border-[2px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  }
+  .brutalist-border-lg {
+    @apply border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+  }
+  .acid-shadow {
+    @apply shadow-[4px_4px_0px_0px_#D1FF00];
+  }
+  .grainy-bg {
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+    background-repeat: repeat;
+  }
+  .grid-paper {
+    background-color: #F5F5F5;
+    background-image: radial-gradient(#000000 0.5px, transparent 0.5px), radial-gradient(#000000 0.5px, #F5F5F5 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.05;
+  }
+  .glass-nav {
+    @apply bg-navy/80 backdrop-blur-md border-b-2 border-acid;
+  }
+  .lcd-text {
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: -0.05em;
+  }
+  .magic-headline {
+    font-size: clamp(3rem, 10vw, 12rem);
+    line-height: 0.8;
+  }
+  .connector-text {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 0.6em;
+    opacity: 0.6;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.2em;
+  }
+  .clip-path-jagged {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 95% 85%, 90% 100%, 85% 85%, 80% 100%, 75% 85%, 70% 100%, 65% 85%, 60% 100%, 55% 85%, 50% 100%, 45% 85%, 40% 100%, 35% 85%, 30% 100%, 25% 85%, 20% 100%, 15% 85%, 10% 100%, 5% 85%, 0 100%);
+  }
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  .bg-radial-vignette {
+    background: radial-gradient(circle, transparent 40%, black 100%);
+  }
+  .noise-overlay {
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+    background-repeat: repeat;
+    pointer-events: none;
+  }
+}
