@@ -25,7 +25,7 @@ const vertexShader = `
 
     vec3 pos = position;
     
-    // Screen Shake Effect
+    // Hiệu ứng Rung màn hình
     if (uShake > 0.0) {
       float shakeX = (fract(sin(uTime * 100.0) * 43758.5453) - 0.5) * uShake;
       float shakeY = (fract(cos(uTime * 120.0) * 12345.6789) - 0.5) * uShake;
@@ -33,11 +33,11 @@ const vertexShader = `
       pos.y += shakeY;
     }
 
-    // 3D Wave Distortion
+    // Biến dạng Sóng 3D
     float wave = sin(pos.x * 0.5 + uTime * 2.0) * 0.2 + cos(pos.y * 0.5 + uTime * 1.5) * 0.2;
     pos.z += wave;
 
-    // Interactive Cursor Displacement
+    // Dịch chuyển theo con trỏ tương tác
     float dist = distance(pos.xy, uMouse);
     float force = 1.0 - smoothstep(0.0, 3.0, dist);
     vec2 dir = normalize(pos.xy - uMouse);
@@ -56,7 +56,7 @@ const fragmentShader = `
   varying float vIsGallery;
 
   void main() {
-    // Map luminance to ASCII character index
+    // Ánh xạ độ sáng (luminance) sang chỉ số ký tự ASCII
     float charIndex = floor(vLuminance * 4.99);
     float uStart = charIndex / 5.0;
     vec2 charUv = vec2(uStart + gl_PointCoord.x / 5.0, gl_PointCoord.y);
@@ -64,7 +64,7 @@ const fragmentShader = `
     vec4 texColor = texture2D(uAsciiTex, charUv);
     if (texColor.a < 0.5) discard;
 
-    // Dual-Tone Styling
+    // Tạo kiểu hai tông màu (Dual-Tone)
     vec3 color = (vIsGallery > 0.5) ? vec3(0.82, 1.0, 0.0) : vec3(1.0, 1.0, 1.0); // Acid Green vs White
     gl_FragColor = vec4(color, 1.0);
   }
@@ -75,7 +75,7 @@ function AsciiParticles({ density }: { density: number }) {
   const { viewport, mouse } = useThree();
   const [asciiTex, setAsciiTex] = useState<THREE.Texture | null>(null);
 
-  // Generate ASCII Texture
+  // Tạo Texture ASCII
   useEffect(() => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -100,9 +100,9 @@ function AsciiParticles({ density }: { density: number }) {
     setAsciiTex(tex);
   }, []);
 
-  // Create Particle Geometry from Text
+  // Tạo Geometry Hạt (Particle) từ Văn bản
   const geometry = useMemo(() => {
-    // Check if font is loaded (optional but helpful)
+    // Kiểm tra xem font đã tải chưa (tùy chọn nhưng hữu ích)
     // document.fonts.check('bold 40px "FSEX300"')
     
     const canvas = document.createElement('canvas');
@@ -147,7 +147,7 @@ function AsciiParticles({ density }: { density: number }) {
     return geo;
   }, [density]);
 
-  // Clean up geometry when density changes
+  // Dọn dẹp geometry khi mật độ (density) thay đổi
   useEffect(() => {
     return () => {
       geometry.dispose();
@@ -180,14 +180,14 @@ function AsciiParticles({ density }: { density: number }) {
     if (!meshRef.current) return;
     uniforms.uTime.value = state.clock.elapsedTime;
 
-    // Smooth mouse tracking
+    // Theo dõi chuột mượt mà
     targetMouse.current.set(mouse.x * viewport.width / 2, mouse.y * viewport.height / 2);
     currentMouse.current.lerp(targetMouse.current, 0.1);
     uniforms.uMouse.value.copy(currentMouse.current);
 
-    // Subtle Screen Shake on Hover
+    // Rung màn hình nhẹ khi di chuột qua
     const distToCenter = currentMouse.current.length();
-    const isHovering = distToCenter < 5.0; // Adjust threshold based on text size
+    const isHovering = distToCenter < 5.0; // Điều chỉnh ngưỡng dựa trên kích thước văn bản
     const targetShake = isHovering ? 0.3 : 0.0;
     uniforms.uShake.value = THREE.MathUtils.lerp(uniforms.uShake.value, targetShake, 0.1);
   });

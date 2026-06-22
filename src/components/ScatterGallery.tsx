@@ -13,7 +13,7 @@ import img7 from '../assets/anhonhiem/o7.webp';
 import img8 from '../assets/anhonhiem/o8.jpg';
 
 
-interface CardData {
+export interface CardData {
   id: string;
   type: 'text' | 'image';
   content: string;
@@ -29,7 +29,7 @@ const CARDS: CardData[] = [
     type: 'text',
     content: 'WASTE IS A RESOURCE',
     subtext: 'RE_MOLD // PROTOCOL_01',
-    color: 'bg-acid',
+    color: 'bg-acid text-black',
     initialPos: { x: -350, y: -200, rotate: -8 }
   },
   {
@@ -135,7 +135,7 @@ const ScatterCard = ({ card, topZ, setTopZ }: { card: CardData; topZ: number; se
         card.type === 'text' ? cn("w-[340px] min-h-[220px]", card.color) : "w-[400px] bg-white"
       )}
     >
-      {/* Decorative Tape Element */}
+      {/* Yếu tố Băng keo Trang trí */}
       {hasTape && (
         <div 
           className="absolute w-24 h-8 bg-amber-900/20 backdrop-blur-sm z-50 pointer-events-none border border-white/10"
@@ -188,7 +188,11 @@ const ScatterCard = ({ card, topZ, setTopZ }: { card: CardData; topZ: number; se
   );
 };
 
-const ScatterGallery: React.FC = () => {
+interface ScatterGalleryProps {
+  cards?: CardData[];
+}
+
+const ScatterGallery: React.FC<ScatterGalleryProps> = ({ cards }) => {
   const [topZ, setTopZ] = useState(10);
   const [key, setKey] = useState(0);
 
@@ -196,12 +200,14 @@ const ScatterGallery: React.FC = () => {
     setKey(prev => prev + 1);
   };
 
+  const displayCards = cards || CARDS;
+
   return (
     <section className="relative min-h-screen w-full bg-[#f8f8f8] overflow-hidden flex items-center justify-center border-t-4 border-black">
-      {/* Noise Texture */}
+      {/* Hiệu ứng Nhiễu (Noise) */}
       <div className="absolute inset-0 noise-overlay opacity-[0.04] pointer-events-none z-10"></div>
       
-      {/* Billboard Text - RE_mould */}
+      {/* Chữ Quảng cáo lớn - RE_mould */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <motion.h2 
           key={key}
@@ -216,7 +222,7 @@ const ScatterGallery: React.FC = () => {
         </motion.h2>
       </div>
 
-      {/* Industrial Grid Lines */}
+      {/* Các đường lưới công nghiệp */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-10">
         {[...Array(6)].map((_, i) => (
           <div key={`h-${i}`} className="absolute w-full h-[1px] bg-black" style={{ top: `${(i + 1) * 16.6}%` }}></div>
@@ -226,9 +232,9 @@ const ScatterGallery: React.FC = () => {
         ))}
       </div>
 
-      {/* Draggable Cards Container */}
+      {/* Container cho các thẻ có thể kéo thả */}
       <div className="relative w-full h-full max-w-[1600px] flex items-center justify-center">
-        {CARDS.map((card) => (
+        {displayCards.map((card) => (
           <ScatterCard 
             key={`${key}-${card.id}`} 
             card={{
@@ -245,7 +251,7 @@ const ScatterGallery: React.FC = () => {
         ))}
       </div>
 
-      {/* Scatter Control */}
+      {/* Bộ điều khiển Phân tán */}
       <div className="absolute bottom-16 right-16 z-50">
         <button 
           onClick={shuffle}
@@ -256,7 +262,7 @@ const ScatterGallery: React.FC = () => {
         </button>
       </div>
 
-      {/* Footer Instructions */}
+      {/* Hướng dẫn ở chân trang */}
       <div className="absolute bottom-16 left-16 z-50 pointer-events-none">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">

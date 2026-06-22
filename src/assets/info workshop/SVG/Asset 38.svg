@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 577.91 55.07">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: blue;
+        font-family: MalintonTrialVersion-ExtBd, 'Malinton Trial Version';
+        font-size: 50.02px;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        fill: #ff009e;
+      }
+
+      .cls-5 {
+        fill: #a7f417;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-1" transform="translate(0 42.52)"><tspan x="0" y="0">Si</tspan><tspan class="cls-2" x="47.17" y="0">z</tspan><tspan class="cls-3" x="73.18" y="0">e</tspan></text>
+      <rect class="cls-4" x="136.47" y="23.31" width="441.45" height="13.79" rx="6.43" ry="6.43"/>
+      <circle class="cls-5" cx="196.09" cy="29.7" r="19.4"/>
+    </g>
+  </g>
+</svg>

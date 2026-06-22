@@ -1,3 +1,86 @@
+/* ── Anek Devanagari – Body Text ─────────────────────────── */
+@font-face {
+  font-family: 'AnekDevanagari';
+  src: url('./assets/font/Anek_Devanagari (1)/AnekDevanagari-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Malinton – Main Headings ────────────────────────────── */
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-Thin-BF672accc4ba602.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-ExtLt-BF672accc4840cc.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-Light-BF672accc490f40.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-Regular-BF672accc4a43ea.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-Medium-BF672accc49bfb7.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-SemiBold-BF672accc4b3224.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-Bold-BF672accc4407ad.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-ExtBd-BF672accc44ebf4.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malinton';
+  src: url('./assets/font/malinton-font-family/MalintonTrialVersion-Black-BF672accc40a7c9.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Legacy fonts (giữ lại để tương thích) ──────────────── */
 @font-face {
   font-family: 'FSEX300';
   src: url('./assets/font/FSEX300.ttf') format('truetype');
@@ -5,94 +88,241 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'HubotSansSemiExpanded';
-  src: url('./assets/font/fontvn.com-hubbot/HubotSans_SemiExpanded-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'HubotSans';
-  src: url('./assets/font/fontvn.com-hubbot/HubotSans-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "HubotSans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "HubotSansSemiExpanded", ui-monospace, SFMono-Regular, monospace;
-  --font-display: "FSEX300", sans-serif;
-  --font-serif-italic: "Playfair Display", serif;
+:root {
+  /* 📐 LAYOUT DIMENSIONS & MARGINS (SINGLE SOURCE OF TRUTH) */
+  --pc-sm: 24px;
+  /* Mobile horizontal margin */
+  --pc-md: 48px;
+  /* Tablet horizontal margin */
+  --pc-lg: 70px;
+  /* Desktop horizontal margin */
 
+  /* 📦 CONTAINER MAX WIDTHS */
+  --container-max-width-narrow: 1024px;
+  --container-max-width-standard: 1280px;
+  --container-max-width-wide: 1440px;
+  --container-max-width-full: 1920px;
+
+  /* ⚖️ ALIGNMENT & BIAS RULES */
+  --layout-left-margin: 0px;
+  --layout-right-margin: 0px;
+  --layout-content-offset: 0px;
+  --layout-container-position: center;
+  /* center | left | right */
+
+  /* 📏 SPACING SCALE (MARGINS & PADDINGS) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* 🕸️ GRID SYSTEM GUTTERS */
+  --grid-gutter-sm: 16px;
+  --grid-gutter-md: 24px;
+  --grid-gutter-lg: 32px;
+
+  /* ✍️ TYPOGRAPHY RHYTHM SPACING */
+  --typo-rhythm-xs: 4px;
+  --typo-rhythm-sm: 8px;
+  --typo-rhythm-md: 16px;
+  --typo-rhythm-lg: 24px;
+  --typo-rhythm-xl: 32px;
+  --typo-rhythm-2xl: 48px;
+}
+
+@theme {
+  /* Fonts */
+  --font-sans: "AnekDevanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Malinton", sans-serif;
+  --font-mono: "FSEX300", ui-monospace, SFMono-Regular, monospace;
+
+  /* ═══ MÀU CHÍNH (PRIMARY) ═══════════════════════════════ */
+  --color-brand-blue: #0020D7;
+  /* Xanh dương chính       */
+  --color-brand-pink: #FF009C;
+  /* Hồng chính             */
+  --color-brand-white: #FFFFFF;
+  /* Trắng                  */
+  --color-brand-black: #000000;
+  /* Đen                    */
+
+  /* ═══ MÀU PHỤ (SECONDARY) — chưa dùng, để dành ════════ */
+  --color-sec-green: #A7F417;
+  /* Xanh lá                */
+  --color-sec-cyan: #68FFDC;
+  /* Xanh biển (cyan)       */
+  --color-sec-red: #FF2222;
+  /* Đỏ                     */
+  --color-sec-yellow: #FFDE00;
+  /* Vàng                   */
+  --color-sec-purple: #7B00FF;
+  /* Tím                    */
+
+  /* ═══ MÀU BỔ SUNG ĐƯỢC SỬ DỤNG TRONG GIAO DIỆN ═════════ */
   --color-acid: #D1FF00;
-  --color-burnt-orange: #D94E1F;
-  --color-charcoal: #121212;
-  --color-navy: #0A0F1E;
-  --color-warning: #FF3B30;
+  /* Xanh Acid              */
+  --color-warning: #FF2222;
+  /* Đỏ Cảnh Báo (Warning)   */
+  --color-burnt-orange: #FF5500;
+  /* Cam Cháy (Burnt Orange) */
+
+  /* ═══ ALIASES tiện dùng trong Tailwind ════════════════= */
+  --color-accent: #0020D7;
+  /* = brand-blue           */
+  --color-highlight: #FF009C;
+  /* = brand-pink           */
 }
 
 @layer base {
   body {
-    @apply bg-[#F5F5F5] text-charcoal selection:bg-acid selection:text-black overflow-x-hidden;
+    /* Nền trắng, chữ đen — đúng bảng màu thương hiệu */
+    background-color: var(--color-brand-white);
+    color: var(--color-brand-black);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-blue);
+    color: var(--color-brand-white);
+  }
+
+  /* ══════════════════════════════════════════════════════
+     QUY TẮC MÀU CHỮ TỰ ĐỘNG
+     Chữ luôn TRẮNG khi nền là ĐEN hoặc XANH DƯƠNG
+  ══════════════════════════════════════════════════════ */
+
+  /* Nền đen thương hiệu → chữ trắng */
+  [class*="bg-[#000000]"],
+  [class*="bg-black"] {
+    color: var(--color-brand-white);
+  }
+
+  /* Nền xanh dương thương hiệu → chữ trắng */
+  [class*="bg-[#0020D7]"],
+  [class*="bg-accent"] {
+    color: var(--color-brand-white);
+  }
+
+  /* Áp dụng qua CSS variable (dùng trong custom classes) */
+  .on-black,
+  .on-blue {
+    color: var(--color-brand-white);
   }
 }
 
+
 @layer utilities {
+
+  /* ── Borders & Shadows (dùng màu đen thương hiệu) ── */
   .brutalist-border {
-    @apply border-[2px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+    border: 2px solid var(--color-brand-black);
+    box-shadow: 4px 4px 0px 0px var(--color-brand-black);
   }
+
   .brutalist-border-lg {
-    @apply border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+    border: 4px solid var(--color-brand-black);
+    box-shadow: 8px 8px 0px 0px var(--color-brand-black);
   }
-  .acid-shadow {
-    @apply shadow-[4px_4px_0px_0px_#D1FF00];
+
+  /* Shadow màu xanh dương thương hiệu */
+  .brand-shadow {
+    box-shadow: 4px 4px 0px 0px var(--color-brand-blue);
   }
+
+  /* Shadow màu hồng thương hiệu */
+  .pink-shadow {
+    box-shadow: 4px 4px 0px 0px var(--color-brand-pink);
+  }
+
+  /* ── Backgrounds ── */
   .grainy-bg {
     background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
     background-repeat: repeat;
   }
+
   .grid-paper {
-    background-color: #F5F5F5;
-    background-image: radial-gradient(#000000 0.5px, transparent 0.5px), radial-gradient(#000000 0.5px, #F5F5F5 0.5px);
+    background-color: var(--color-brand-white);
+    background-image:
+      radial-gradient(var(--color-brand-black) 0.5px, transparent 0.5px),
+      radial-gradient(var(--color-brand-black) 0.5px, var(--color-brand-white) 0.5px);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
     opacity: 0.05;
   }
+
+  /* ── Navbar ── */
   .glass-nav {
-    @apply bg-navy/80 backdrop-blur-md border-b-2 border-acid;
+    background-color: color-mix(in srgb, var(--color-brand-black) 90%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid color-mix(in srgb, var(--color-brand-blue) 40%, transparent);
   }
+
+  /* ── Typography helpers ── */
   .lcd-text {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: "FSEX300", monospace;
     letter-spacing: -0.05em;
   }
+
   .magic-headline {
     font-size: clamp(3rem, 10vw, 12rem);
     line-height: 0.8;
   }
-  .connector-text {
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    font-size: 0.6em;
-    opacity: 0.6;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0.2em;
-  }
+
+  /* ── Clip paths ── */
   .clip-path-jagged {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 95% 85%, 90% 100%, 85% 85%, 80% 100%, 75% 85%, 70% 100%, 65% 85%, 60% 100%, 55% 85%, 50% 100%, 45% 85%, 40% 100%, 35% 85%, 30% 100%, 25% 85%, 20% 100%, 15% 85%, 10% 100%, 5% 85%, 0 100%);
   }
+
+  /* ── Animations ── */
   .animate-spin-slow {
     animation: spin 8s linear infinite;
   }
+
+
   .bg-radial-vignette {
-    background: radial-gradient(circle, transparent 40%, black 100%);
+    background: radial-gradient(circle, transparent 40%, var(--color-brand-black) 100%);
   }
+
   .noise-overlay {
     background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
     background-repeat: repeat;
     pointer-events: none;
   }
+
+  /* ── PageContainer responsive margins ── */
+  /* Đọc CSS variables --pc-sm / --pc-md / --pc-lg được set bởi PageContainer.tsx */
+  @media (min-width: 768px) {
+    .pc-layout {
+      padding-left: var(--pc-md) !important;
+      padding-right: var(--pc-md) !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pc-layout {
+      padding-left: var(--pc-lg) !important;
+      padding-right: var(--pc-lg) !important;
+    }
+  }
+}
+
+/* ── Global Animations ── */
+@keyframes float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
 }

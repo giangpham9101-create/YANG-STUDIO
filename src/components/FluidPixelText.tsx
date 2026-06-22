@@ -41,7 +41,7 @@ const FluidPixelText: React.FC<FluidPixelTextProps> = ({
   const mouse = useRef({ x: 0, y: 0, radius: interactRadius });
   const animationFrameId = useRef<number | null>(null);
 
-  // Use refs to keep animate loop updated without re-running useEffect
+  // Sử dụng refs để giữ cho vòng lặp animate luôn được cập nhật mà không cần chạy lại useEffect
   const petRef = useRef({ activePet, petPosition });
   useEffect(() => {
     petRef.current = { activePet, petPosition };
@@ -116,13 +116,13 @@ const FluidPixelText: React.FC<FluidPixelTextProps> = ({
     };
 
     const loadFontsAndInit = async () => {
-      // First init with whatever is available
+      // Khởi tạo lần đầu với bất kỳ thứ gì có sẵn
       resize();
       
       try {
         const families = Array.from(new Set(lines.map(l => l.fontFamily)));
         await Promise.all(families.map(f => document.fonts.load(`100px "${f}"`)));
-        // Re-init once fonts actually arrive
+        // Khởi tạo lại sau khi font chữ thực sự được tải xong
         initParticles();
       } catch (err) {
         console.warn("Font loading failed, using fallback", err);
@@ -139,7 +139,7 @@ const FluidPixelText: React.FC<FluidPixelTextProps> = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.current.forEach(p => {
-        if (p.isConsumed) return; // Skip rendering and logic for eaten particles
+        if (p.isConsumed) return; // Bỏ qua việc vẽ và xử lý logic cho các hạt đã bị "ăn"
 
         const dx = mouse.current.x - p.x;
         const dy = mouse.current.y - p.y;
@@ -154,28 +154,28 @@ const FluidPixelText: React.FC<FluidPixelTextProps> = ({
           p.vy -= (forceY * force * 12);
         }
 
-        // --- NEW: Pet Suction Logic ---
+        // --- MỚI: Logic Hút Của Thú Cưng ---
         const { activePet, petPosition } = petRef.current;
         if (activePet !== 'none') {
           const pdx = petPosition.x - p.x;
           const pdy = petPosition.y - p.y;
           const pDistSq = pdx * pdx + pdy * pdy;
           const pDist = Math.sqrt(pDistSq);
-          const pRadius = 180; // Suction range
+          const pRadius = 180; // Phạm vi hút
 
           if (pDist < pRadius) {
             const pForce = (pRadius - pDist) / pRadius;
             const pForceX = pdx / pDist;
             const pForceY = pdy / pDist;
             
-            // --- NEW: Consumption logic ---
+            // --- MỚI: Logic tiêu thụ/ăn hạt ---
             if (pDist < 30) {
               p.isConsumed = true;
               return;
             }
             // ------------------------------
 
-            // Negative friction-like pull towards the center
+            // Lực kéo về tâm (tương tự lực ma sát ngược)
             p.vx += (pForceX * pForce * 18);
             p.vy += (pForceY * pForce * 18);
           }

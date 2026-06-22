@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 727.73 55.07">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        font-family: MalintonTrialVersion-ExtBd, 'Malinton Trial Version';
+        font-size: 50.02px;
+        opacity: .1;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <text class="cls-3" transform="translate(0 42.52)"><tspan x="0" y="0">Sele</tspan><tspan class="cls-2" x="108.14" y="0">c</tspan><tspan x="138.2" y="0">t a base shape </tspan><tspan class="cls-1" x="519.7" y="0">t</tspan><tspan x="545.41" y="0">o start</tspan></text>
+  </g>
+</svg>

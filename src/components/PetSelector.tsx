@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { usePet, PetType } from '../lib/PetContext';
 
 const PET_OPTIONS: { type: PetType; label: string; icon: React.ReactNode }[] = [
   { 
-    type: 'bottle', 
-    label: 'BOTTI (PET)', 
+    type: 'chai1', 
+    label: 'CHAI NHỰA 01', 
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <path d="M9 3h6v3H9V3zM7 6h10v13a2 2 0 01-2 2H9a2 2 0 01-2-2V6zM9 10h6M9 14h6" />
@@ -13,29 +13,11 @@ const PET_OPTIONS: { type: PetType; label: string; icon: React.ReactNode }[] = [
     ) 
   },
   { 
-    type: 'jug', 
-    label: 'CRUSH (HDPE)', 
+    type: 'chai2', 
+    label: 'CHAI NHỰA 02', 
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <path d="M6 3h12l1 4h2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V7h2l1-4zM6 10h12M6 14h12" />
-      </svg>
-    ) 
-  },
-  { 
-    type: 'icon', 
-    label: 'LOOP (RECYCLE)', 
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-      </svg>
-    ) 
-  },
-  { 
-    type: 'flake', 
-    label: 'FLAKY (P6)', 
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M12 4l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4z" />
       </svg>
     ) 
   },
@@ -47,7 +29,7 @@ const PetSelector: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-[10000] flex flex-col items-end gap-3 pointer-events-auto">
-      {/* Selector Menu */}
+      {/* Menu Chọn Lựa */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -88,7 +70,7 @@ const PetSelector: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Main Trigger */}
+      {/* Nút Kích Hoạt Chính */}
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

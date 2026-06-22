@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-export type PetType = 'bottle' | 'jug' | 'icon' | 'flake' | 'none';
+export type PetType = 'chai1' | 'chai2' | 'chai3' | 'chai4' | 'chai5' | 'chai6' | 'chai7' | 'chai8' | 'chai9' | 'none';
 
 interface PetContextType {
   activePet: PetType;

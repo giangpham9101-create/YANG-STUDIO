@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1486.72 115.1">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-family: MalintonTrialVersion-ExtBd, 'Malinton Trial Version';
+        font-size: 50.02px;
+      }
+
+      .cls-2 {
+        fill: #ff009e;
+      }
+
+      .cls-3 {
+        fill: #a7f417;
+      }
+
+      .cls-4 {
+        letter-spacing: -.03em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-1" transform="translate(0 42.52)"><tspan x="0" y="0">Extrusion De</tspan><tspan class="cls-4" x="330.33" y="0">p</tspan><tspan x="361.64" y="0">th</tspan></text>
+      <rect class="cls-2" x="2.04" y="85.1" width="1484.68" height="16.47" rx="8.23" ry="8.23"/>
+      <circle class="cls-3" cx="75.45" cy="90.59" r="19.4"/>
+    </g>
+  </g>
+</svg>

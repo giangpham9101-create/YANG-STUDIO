@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Shield, Settings, Users, Package, Search, Bell, Plus } from "lucide-react";
+import PageContainer from "../components/PageContainer";
 import { cn } from "@/src/lib/utils";
 
 const DATA = [
@@ -11,9 +12,11 @@ const DATA = [
 
 export default function Admin() {
   return (
-    <div className="pt-32 pb-12 px-6 md:px-12 min-h-screen bg-charcoal text-white grainy-bg">
-      <div className="max-w-7xl mx-auto">
-        {/* Admin Header */}
+    <PageContainer
+      size="wide"
+      className="pt-32 pb-12 min-h-screen bg-charcoal text-white grainy-bg"
+    >
+        {/* Tiêu đề Admin */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-8 border-b-2 border-white/10 pb-8">
           <div className="flex items-center gap-6">
             <div className="w-16 h-16 bg-acid flex items-center justify-center brutalist-border">
@@ -40,7 +43,7 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* Quick Stats */}
+        {/* Thống kê nhanh */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {[
             { label: "ACTIVE_USERS", value: "1,242", icon: Users, color: "text-white" },
@@ -57,7 +60,7 @@ export default function Admin() {
           ))}
         </div>
 
-        {/* Data Table */}
+        {/* Bảng dữ liệu */}
         <div className="bg-black brutalist-border border-white/10 overflow-hidden">
           <div className="p-6 border-b border-white/10 flex justify-between items-center">
             <h3 className="font-display text-xl uppercase">SYSTEM_LOGS</h3>
@@ -98,7 +101,6 @@ export default function Admin() {
             </table>
           </div>
         </div>
-      </div>
-    </div>
+    </PageContainer>
   );
 }

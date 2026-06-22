@@ -21,6 +21,8 @@ export interface ExtrudeSettings {
   bevelOffset: number;
   bevelSegments: number;
   artistMark?: ArtistMark;
+  scaleX?: number;
+  scaleY?: number;
 }
 
 export type GeometryStyle = 'smooth' | 'lowpoly';

@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import img1 from '../assets/anhonhiem/o1.jpg';
+import img2 from '../assets/anhonhiem/o2.jpg';
+import img4 from '../assets/anhonhiem/o4.webp';
+import img6 from '../assets/anhonhiem/o6.webp';
+import img8 from '../assets/anhonhiem/o8.jpg';
 import {
   Plus,
   Recycle,
@@ -19,8 +23,10 @@ import {
 } from "lucide-react";
 
 import PlasticWasteScroll from "../components/PlasticWasteScroll";
-import ScatterGallery from "../components/ScatterGallery";
+import ScatterGallery, { CardData } from "../components/ScatterGallery";
 import FluidPixelText from "../components/FluidPixelText";
+import NeubrutalismButton from "../components/NeubrutalismButton";
+import PageContainer from "../components/PageContainer";
 import { cn } from "@/src/lib/utils";
 
 interface HomeProps {
@@ -73,6 +79,71 @@ const IndustrialContainer = ({
   </motion.div>
 );
 
+// ── BẢNG MÀU VÀ NỘI DUNG CHO CÁC Ô POLAROID (CÓ THỂ TỰ ĐIỀU CHỈNH TẠI ĐÂY) ──
+// Bạn có thể đổi màu nền (bg-*), màu chữ (text-*), tiêu đề (content), và chữ phụ (subtext) của từng ô.
+const POLAROID_CARDS: CardData[] = [
+  {
+    id: '1',
+    type: 'text',
+    content: 'WASTE IS A RESOURCE',
+    subtext: 'RE_MOLD // PROTOCOL_01',
+    color: 'bg-acid text-black', // Đã sửa lỗi mất màu (sử dụng màu xanh acid mới)
+    initialPos: { x: -350, y: -200, rotate: -8 }
+  },
+  {
+    id: '2',
+    type: 'image',
+    content: 'POLLUTION_SCAN_01',
+    image: img2,
+    initialPos: { x: 50, y: -250, rotate: 5 }
+  },
+  {
+    id: '3',
+    type: 'text',
+    content: '100% RECYCLED PET',
+    subtext: 'BOTTLE_REBIRTH_SYS',
+    color: 'bg-black text-white',
+    initialPos: { x: 400, y: -150, rotate: -12 }
+  },
+  {
+    id: '4',
+    type: 'image',
+    content: 'WASTE_TEXTURE_V.2',
+    image: img4,
+    initialPos: { x: -100, y: 50, rotate: 10 }
+  },
+  {
+    id: '5',
+    type: 'text',
+    content: 'CIRCULAR DESIGN',
+    subtext: 'NO_WASTE_LEFT_BEHIND',
+    color: 'bg-burnt-orange text-white', // Đã sửa lỗi mất màu (sử dụng màu cam cháy mới)
+    initialPos: { x: -450, y: 150, rotate: 6 }
+  },
+  {
+    id: '6',
+    type: 'image',
+    content: 'PROCESS_ANomaly',
+    image: img6,
+    initialPos: { x: 250, y: 50, rotate: -5 }
+  },
+  {
+    id: '7',
+    type: 'text',
+    content: 'REBUILD THE SYSTEM',
+    subtext: 'PLASTIC_PEOPLE_LAB',
+    color: 'bg-warning text-white', // Đã sửa lỗi mất màu (sử dụng màu đỏ cảnh báo mới)
+    initialPos: { x: 150, y: 250, rotate: 8 }
+  },
+  {
+    id: '8',
+    type: 'image',
+    content: 'MATERIAL_ARCHIVE',
+    image: img8,
+    initialPos: { x: -300, y: 300, rotate: -10 }
+  }
+];
+
 export default function Home({ onNavigate }: HomeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -80,8 +151,8 @@ export default function Home({ onNavigate }: HomeProps) {
     offset: ["start start", "end end"]
   });
 
-  // We want the 3D scene to move forward during top scroll, stay put during the content, and move backward during the bottom scroll
-  const heroScrollProgress = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  // Cảnh 3D sẽ tiến về phía trước theo nhịp cuộn của từ đầu đến cuối trang.
+  const heroScrollProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const [scrollVal, setScrollVal] = useState(0);
 
   useEffect(() => {
@@ -91,20 +162,20 @@ export default function Home({ onNavigate }: HomeProps) {
   }, [heroScrollProgress]);
 
   const heroLines = useMemo(() => [
-    { text: "PLASTIC", fontSize: 220, fontFamily: "FSEX300", color: "#ffffff", offsetY: -200 },
-    { text: "into", fontSize: 100, fontFamily: "Playfair Display", color: "#ffffff", offsetY: -20, isItalic: true },
-    { text: "YANG", fontSize: 600, fontFamily: "FSEX300", color: "#D1FF00", offsetY: 250 }
+    { text: "RE-LIFE LAB", fontSize: 200, fontFamily: "FSEX300", color: "#0000ff", offsetY: -180 },
+    { text: "the", fontSize: 120, fontFamily: "Playfair Display", color: "#ff009e", offsetY: -2, isItalic: true },
+    { text: "OPEN-SOURCE", fontSize: 220, fontFamily: "FSEX300", color: "#ff009e", offsetY: 200 }
   ], []);
 
   return (
     <div ref={containerRef} className="pt-32 min-h-screen relative bg-[#F5F5F5]">
-      {/* Grid Paper Background */}
+      {/* Nền Giấy Kẻ Ô */}
       <div className="fixed inset-0 grid-paper pointer-events-none z-0"></div>
 
-      {/* Cinematic 3D Plastic Waste Scroll - Background */}
+      {/* Cuộn Rác Thải Nhựa 3D Điện Ảnh - Nền */}
       <PlasticWasteScroll scrollProgress={scrollVal} />
 
-      {/* Hero Section with Interactive Fluid Pixel Typography - Fixed Layer Behind */}
+      {/* Phần Hero với Chữ Pixel Dòng Chảy Tương Tác - Lớp Cố Định Phía Sau */}
       <motion.div
         style={{
           opacity: useTransform(scrollYProgress, [0, 0.3, 0.7, 0.75, 0.85, 1], [1, 0.05, 0.05, 0, 0, 1]),
@@ -118,36 +189,37 @@ export default function Home({ onNavigate }: HomeProps) {
           className="pointer-events-auto"
         />
         <div className="mt-6 flex flex-col items-center gap-4">
-          <div className="font-mono text-xs text-gray-300 flex items-center gap-2">
+          {/* Để chỉnh vị trí lên xuống của tọa độ: thay đổi lớp '-translate-y-4' bên dưới (ví dụ: -translate-y-6 để lên thêm, translate-y-2 để xuống) */}
+          <div className="font-mono text-xs text-gray-300 flex items-center gap-2 -translate-y-4">
             <MapPin size={12} className="text-burnt-orange" />
             <span>COORD: 10.7626° N, 106.6602° E</span>
           </div>
-          <div className="font-mono text-[10px] text-acid uppercase tracking-[0.3em]">
-            TRANSFORMATION_PROTOCOL_ACTIVE
+          <div className="font-mono text-[13px] text-acid uppercase tracking-[0.3em]">
+            Trash Outside _ Art On-Chain.
           </div>
         </div>
       </motion.div>
 
-      {/* Main Content Sections - Z-10 to scroll OVER the hero text */}
+      {/* Các Phần Nội Dung Chính - Z-10 để cuộn ĐÈ LÊN chữ hero */}
       <div className="relative z-10 w-full">
 
-        <div className="relative z-10 max-w-[1200px] mx-auto p-6 md:p-12 space-y-12">
+        <PageContainer size="standard" className="relative z-10 py-6 md:py-12 space-y-12">
 
-          {/* Hero Section Spacer */}
+          {/* Khoảng Trống Phần Hero */}
           <section className="relative h-screen flex flex-col justify-center items-center text-center -mt-20 -mx-6 md:-mx-12 overflow-hidden pointer-events-none">
           </section>
 
-          {/* Spacer to allow scrolling through the 3D scene */}
+          {/* Khoảng trống để cho phép cuộn qua cảnh 3D */}
           <div className="h-[50vh]"></div>
 
-          {/* Modular Grid */}
+          {/* Lưới Mô-đun */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
 
-            {/* Module A: Real-Time Impact */}
+            {/* Mô-đun A: Tác Động Thời Gian Thực */}
             <IndustrialContainer
               title="REAL_TIME_IMPACT_DATA"
               className="md:col-span-8"
-              onClick={() => onNavigate("impact")}
+              onClick={() => onNavigate("about")}
               delay={0.1}
             >
               <div className="flex flex-col md:flex-row justify-between items-end gap-8 flex-1">
@@ -185,7 +257,7 @@ export default function Home({ onNavigate }: HomeProps) {
               </div>
             </IndustrialContainer>
 
-            {/* Module B: Partnership Program */}
+            {/* Mô-đun B: Chương Trình Đối Tác */}
             <IndustrialContainer title="PARTNERSHIP_PROGRAM" className="md:col-span-4" delay={0.2}>
               <div className="flex flex-col h-full justify-between">
                 <div className="flex items-center gap-4 mb-6">
@@ -217,7 +289,7 @@ export default function Home({ onNavigate }: HomeProps) {
               </div>
             </IndustrialContainer>
 
-            {/* Module C: Transformation Flow */}
+            {/* Mô-đun C: Luồng Biến Đổi */}
             <IndustrialContainer
               title="TRANSFORMATION_FLOW_V.2"
               className="md:col-span-4"
@@ -251,9 +323,9 @@ export default function Home({ onNavigate }: HomeProps) {
               </div>
             </IndustrialContainer>
 
-            {/* Module D: News & Media */}
+            {/* Mô-đun D: Tin Tức & Truyền Thông */}
             <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <IndustrialContainer title="NEWS_MEDIA_01" onClick={() => onNavigate("news")} delay={0.4}>
+              <IndustrialContainer title="NEWS_MEDIA_01" onClick={() => onNavigate("communicate")} delay={0.4}>
                 <div className="aspect-video bg-gray-200 mb-4 overflow-hidden brutalist-border relative">
                   <img
                     src={img1}
@@ -271,7 +343,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 </div>
               </IndustrialContainer>
 
-              <IndustrialContainer title="NEWS_MEDIA_02" onClick={() => onNavigate("news")} delay={0.5}>
+              <IndustrialContainer title="NEWS_MEDIA_02" onClick={() => onNavigate("communicate")} delay={0.5}>
                 <div className="flex flex-col h-full">
                   <h4 className="font-display text-4xl uppercase leading-none mb-4">DISTRICT 7 HUB: CAPACITY DOUBLED</h4>
                   <p className="font-mono text-xs text-gray-500 mb-6">OPERATIONS_SYS: New machinery installed at the main processing facility.</p>
@@ -283,7 +355,7 @@ export default function Home({ onNavigate }: HomeProps) {
               </IndustrialContainer>
             </div>
 
-            {/* Quick Actions */}
+            {/* Hành Động Nhanh */}
             <div className="md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-6">
               <button className="bg-black text-white p-8 brutalist-border hover:bg-acid hover:text-black transition-all flex flex-col justify-between text-left group">
                 <Download size={24} className="group-hover:translate-y-1 transition-transform" />
@@ -293,20 +365,24 @@ export default function Home({ onNavigate }: HomeProps) {
                 <ShoppingBag size={24} className="group-hover:scale-110 transition-transform" />
                 <span className="font-display text-2xl uppercase leading-none">BUY<br />MATERIALS</span>
               </button>
-              <button className="md:col-span-2 bg-acid text-black p-6 brutalist-border hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-between group">
-                <span className="font-display text-3xl uppercase">JOIN_THE_PARTNERSHIP_NETWORK</span>
-                <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
-              </button>
+              <NeubrutalismButton
+                label="JOIN_THE_PARTNERSHIP_NETWORK"
+                className="md:col-span-2 w-full"
+                padding="1.5rem 1.5rem"
+                onClick={() => { }}
+              >
+                <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform ml-4" />
+              </NeubrutalismButton>
             </div>
 
           </div>
-        </div>
+        </PageContainer>
 
-        {/* Epic Outro Interactive Scatter Gallery */}
-        <ScatterGallery />
+        {/* Kết thúc Gallery Phân Tán Tương Tác */}
+        <ScatterGallery cards={POLAROID_CARDS} />
       </div>
 
-      {/* Barcode Decoration */}
+      {/* Trang Trí Mã Vạch */}
       <div className="fixed bottom-24 right-12 opacity-20 pointer-events-none hidden xl:block">
         <div className="flex gap-1 h-12">
           {[2, 4, 1, 8, 2, 6, 2, 1, 4, 2, 8, 1].map((w, i) => (
